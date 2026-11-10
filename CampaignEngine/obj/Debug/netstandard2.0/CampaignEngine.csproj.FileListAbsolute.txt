@@ -1,0 +1,10 @@
+C:\Users\OzDog\Documents\Claude general use\VTOLCampaign\CampaignEngine\bin\Debug\netstandard2.0\CampaignEngine.deps.json
+C:\Users\OzDog\Documents\Claude general use\VTOLCampaign\CampaignEngine\bin\Debug\netstandard2.0\CampaignEngine.dll
+C:\Users\OzDog\Documents\Claude general use\VTOLCampaign\CampaignEngine\bin\Debug\netstandard2.0\CampaignEngine.pdb
+C:\Users\OzDog\Documents\Claude general use\VTOLCampaign\CampaignEngine\obj\Debug\netstandard2.0\CampaignEngine.csproj.AssemblyReference.cache
+C:\Users\OzDog\Documents\Claude general use\VTOLCampaign\CampaignEngine\obj\Debug\netstandard2.0\CampaignEngine.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\OzDog\Documents\Claude general use\VTOLCampaign\CampaignEngine\obj\Debug\netstandard2.0\CampaignEngine.AssemblyInfoInputs.cache
+C:\Users\OzDog\Documents\Claude general use\VTOLCampaign\CampaignEngine\obj\Debug\netstandard2.0\CampaignEngine.AssemblyInfo.cs
+C:\Users\OzDog\Documents\Claude general use\VTOLCampaign\CampaignEngine\obj\Debug\netstandard2.0\CampaignEngine.csproj.CoreCompileInputs.cache
+C:\Users\OzDog\Documents\Claude general use\VTOLCampaign\CampaignEngine\obj\Debug\netstandard2.0\CampaignEngine.dll
+C:\Users\OzDog\Documents\Claude general use\VTOLCampaign\CampaignEngine\obj\Debug\netstandard2.0\CampaignEngine.pdb

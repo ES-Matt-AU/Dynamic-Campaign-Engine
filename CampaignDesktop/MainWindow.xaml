@@ -1,0 +1,156 @@
+<Window x:Class="CampaignDesktop.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="VTOL VR Dynamic Campaign" Height="900" Width="1750"
+        Background="#1E1E1E" Foreground="#DDDDDD">
+
+    <Window.Resources>
+        <!-- Same text style as the message log. -->
+        <DataTemplate x:Key="LineTemplate">
+            <TextBlock Text="{Binding Text}" Foreground="{Binding Brush}" TextWrapping="Wrap" FontFamily="Consolas" FontSize="12" />
+        </DataTemplate>
+
+        <!-- Clear highlight for the selected mission on the dark background. -->
+        <Style x:Key="SelectableItem" TargetType="ListBoxItem">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border x:Name="Bd" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" Padding="4,3" Margin="0,1">
+                            <ContentPresenter />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="#202830" />
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="#2E4A70" />
+                                <Setter TargetName="Bd" Property="BorderBrush" Value="#6CB4FF" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="PlainItem" TargetType="ListBoxItem">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="Focusable" Value="False" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border Padding="4,3" Margin="0,1">
+                            <ContentPresenter />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="PanelHeading" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Margin" Value="8,6,8,2" />
+        </Style>
+    </Window.Resources>
+
+    <DockPanel>
+
+        <!-- Basic controls for now; to be refined later. -->
+        <ToolBar DockPanel.Dock="Top">
+            <Button x:Name="NewButton" Content="New campaign" Click="NewButton_Click" Margin="2,0" />
+            <Button x:Name="LoadButton" Content="Load" Click="LoadButton_Click" Margin="2,0" />
+            <Button x:Name="SaveButton" Content="Save" Click="SaveButton_Click" Margin="2,0" />
+            <Separator />
+            <Button x:Name="RunButton" Content="Run" Click="RunButton_Click" Width="70" FontWeight="Bold" Margin="2,0" />
+            <TextBlock Text="Speed:" VerticalAlignment="Center" Margin="8,0,4,0" />
+            <ComboBox x:Name="SpeedBox" Width="150" SelectionChanged="SpeedBox_SelectionChanged" />
+            <Separator />
+            <CheckBox x:Name="DetailBox" Content="Show minor detail in log" VerticalAlignment="Center" Margin="4,0"
+                      Checked="DetailBox_Changed" Unchecked="DetailBox_Changed" />
+        </ToolBar>
+
+        <StatusBar DockPanel.Dock="Bottom" Background="#2D2D30" Foreground="#DDDDDD">
+            <StatusBarItem>
+                <TextBlock x:Name="TimeText" FontWeight="Bold" />
+            </StatusBarItem>
+            <Separator />
+            <StatusBarItem>
+                <TextBlock x:Name="AlliedText" Foreground="#6CB4FF" />
+            </StatusBarItem>
+            <Separator />
+            <StatusBarItem>
+                <TextBlock x:Name="EnemyText" Foreground="#FF7070" />
+            </StatusBarItem>
+        </StatusBar>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="430" MinWidth="250" />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="*" MinWidth="400" />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="480" MinWidth="250" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Missions -->
+            <Grid Grid.Column="0" Background="#141414">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="2*" MinHeight="100" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" MinHeight="80" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Style="{StaticResource PanelHeading}" Text="Available missions" />
+                <ListBox Grid.Row="1" x:Name="MissionList" Background="#141414" BorderThickness="0"
+                         ItemTemplate="{StaticResource LineTemplate}" ItemContainerStyle="{StaticResource SelectableItem}"
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionMode="Single"
+                         SelectionChanged="MissionList_SelectionChanged" />
+
+                <Border Grid.Row="2" BorderBrush="#3F3F46" BorderThickness="0,1,0,0" Padding="8,6">
+                    <DockPanel>
+                        <Button x:Name="AcceptButton" DockPanel.Dock="Bottom" Content="Accept and fly mission" FontWeight="Bold"
+                                Padding="8,4" Margin="0,6,0,0" IsEnabled="False" Click="AcceptButton_Click" />
+                        <ScrollViewer MaxHeight="220" VerticalScrollBarVisibility="Auto">
+                            <TextBlock x:Name="MissionDetails" TextWrapping="Wrap" FontFamily="Consolas" FontSize="12" Foreground="#CCCCCC"
+                                       Text="Select a mission to see its briefing." />
+                        </ScrollViewer>
+                    </DockPanel>
+                </Border>
+
+                <GridSplitter Grid.Row="3" HorizontalAlignment="Stretch" Background="#3F3F46" />
+
+                <TextBlock Grid.Row="4" Style="{StaticResource PanelHeading}" Text="Active missions (Allied AI flights airborne)" />
+                <ListBox Grid.Row="5" x:Name="ActiveList" Background="#141414" BorderThickness="0"
+                         ItemTemplate="{StaticResource LineTemplate}" ItemContainerStyle="{StaticResource PlainItem}"
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled" />
+            </Grid>
+
+            <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" Background="#3F3F46" />
+
+            <!-- Map -->
+            <DockPanel Grid.Column="2" Background="#101418">
+                <TextBlock DockPanel.Dock="Bottom" Margin="8,4" TextWrapping="Wrap" Foreground="#AAAAAA" FontSize="12"
+                           Text="A airbase   F FARP   I factory   M military base   P power station   O refinery   R radar    • ground unit (enemy only where intel is fresh)    dashed ring: air patrol    amber: out of action    darker red: enemy area with stale intel.  Hover over a marker for details." />
+                <Viewbox Stretch="Uniform" Margin="8">
+                    <Canvas x:Name="MapCanvas" Width="800" Height="800" ClipToBounds="True" />
+                </Viewbox>
+            </DockPanel>
+
+            <GridSplitter Grid.Column="3" HorizontalAlignment="Stretch" Background="#3F3F46" />
+
+            <!-- Message log -->
+            <DockPanel Grid.Column="4">
+                <TextBlock DockPanel.Dock="Top" Style="{StaticResource PanelHeading}" Text="Message log" />
+                <TextBlock x:Name="LogStatus" DockPanel.Dock="Top" Margin="8,0,8,4" Foreground="#AAAAAA" FontSize="12" />
+                <ListBox x:Name="LogList" Background="#141414" BorderThickness="0"
+                         ItemTemplate="{StaticResource LineTemplate}"
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                         VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling" />
+            </DockPanel>
+        </Grid>
+    </DockPanel>
+</Window>

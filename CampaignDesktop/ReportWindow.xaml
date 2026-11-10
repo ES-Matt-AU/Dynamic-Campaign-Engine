@@ -1,0 +1,17 @@
+<Window x:Class="CampaignDesktop.ReportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Mission report" Height="700" Width="900"
+        Background="#1E1E1E" Foreground="#DDDDDD" WindowStartupLocation="CenterOwner">
+    <DockPanel>
+        <Button DockPanel.Dock="Bottom" Content="Close" Width="100" Margin="8" HorizontalAlignment="Right" IsDefault="True" IsCancel="True" />
+        <ListBox x:Name="ReportList" Background="#141414" BorderThickness="0"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Text}" Foreground="{Binding Brush}" TextWrapping="Wrap" FontFamily="Consolas" FontSize="12" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </DockPanel>
+</Window>

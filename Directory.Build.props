@@ -1,0 +1,15 @@
+<Project>
+  <!--
+    Version for the whole solution, shown when the program starts.
+    0.1.0  First milestone: campaign engine, detection model, console front end.
+    0.2.0  Troop insertion: tilt-jet transports, capture, reinforce and escort missions.
+    0.3.0  Desktop window (CampaignDesktop): map, live message log, run/pause, speed.
+    0.4.0  Desktop mission selector: available missions, briefing, accept button, report window, active AI missions.
+    0.4.1  Mission list shows time to expiry in whole minutes.
+    0.4.2  Console mission list also shows time to expiry in whole minutes.
+  -->
+  <PropertyGroup>
+    <Version>0.4.2</Version>
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+  </PropertyGroup>
+</Project>
