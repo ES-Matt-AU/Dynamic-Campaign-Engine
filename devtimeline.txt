@@ -1,0 +1,28 @@
+Dev Timeline Vision
+V0.1
+Proof of concept of dynamic campaign integrated into VTOLVR. No player gameplay interaction required. Will the simulator run the scenarios and units set by the campaign engine? VR not required. Ability of the user to see the campaign running in realtime from a camera view within the sim. Do missions get generated and accepted? When accepted can we see the aircraft taxy out and depart on mission? No need for a user to be able to select or jump into missions. Performance test of simulation over a large map with many units.
+-Units should not move from their intial campaign start (tactical movement to be implemented later).
+-AI CAP over airfield
+-AI CAP along a frontline section
+-AI SEAD mission on a FARP
+-AI to respect fuel and weapon limitations, return to base before fuel runs out if mission not complete. Air to air refuel for AI at later version!
+Ensure AI is not just accepting all missions immediately at a rate that a player could not possibly play with or against. Shouldn't happen with the campaign engine setting the rules for mission acceptance.
+
+V0.2
+Single player proof. Can a player select a mission to fly, loadout the aircraft and then take part in their assigned mission? The mission data (waypoints and targtet area) should be preloaded into the aircafts system. Can the user interact with this flight plan before takeoff? Set a new route to target?
+Single aircraft flight. No wingman. Still in test phase to find problems with player interaction with campaign.
+Outcome of successful mission or mission failure on the battlefield heat map and AI enemy reponse.
+
+If I leave the mission (not eject) AI takes over the flight and tries to return to base. Mission can not be re-entered by player once left in this manner (prevent player from just launching missions and leaving them).
+
+v0.3
+Can we view in progress missions from a camera view? Option in briefing room for this. Ongoing mission list to provide the source for the player to select. Player does not need to be able to take over the mission (to be implemented later).
+
+v0.4
+Co-op?
+
+v0.5
+Resources.
+Set up a resource limit for the home base and FARPS (Fuel, Ammo, aircraft number). Fuel produced by refinary (must be above a certain health to produce fuel, rate of production proportinate to health). Ammo from factory, same rules. Airbase has automatic resupply from production. FARPS must receive a resupply mission. Does this lead to creating a custom mission? If the mission list is empty, instead of accelerating time, why not create a quick supply mission?
+This would lead to a gameplay benefit of deep strikes on enemy facilties to slow enemy progress. Resources must be at set levels for a mission to be generated. Mission could show estimated fuel required so a palyer can see if they can do it.
+-Don't get too caught up in resources. It may take away the fun factor and become too hardline for general play. Pergaps resources could be an option at campagin start, with the level of productin variable to impact gameplay difficulty.
